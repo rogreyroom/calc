@@ -1,0 +1,17 @@
+{
+	"name": "calculator",
+	"version": "1.0.0",
+	"description": "Simple calculator project.",
+	"main": "index.js",
+	"scripts": {
+		"dev": "parcel index.html",
+		"build": "parcel build index.html"
+	},
+	"repository": "https://github.com/rogreyroom/calc.git",
+	"author": "Robert Adamczewski <robert@adamczewski.me>",
+	"license": "MIT",
+	"private": false,
+	"devDependencies": {
+		"parcel-bundler": "^1.12.4"
+	}
+}
