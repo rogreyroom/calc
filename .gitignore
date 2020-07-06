@@ -12,3 +12,6 @@ logs
 # Sass
 .sass-cache/
 *.css.map
+
+# Parcel
+.cache
