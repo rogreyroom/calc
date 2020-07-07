@@ -10,11 +10,12 @@
 	--orange: #ff9768;
 	--pink-01: #d98192;
 	--pink-02: #e62e89;
+	--pink-03: #eb6aaa;
 
 	--body-gradient: linear-gradient(127deg, var(--purple-01), var(--orange));
 	--button-functions-gradient: linear-gradient(0deg, var(--white-03), var(--white-01));
 	--button-numbers-gradient: linear-gradient(336deg, var(--white), var(--white-02));
 	--button-numbers-hover-gradient: linear-gradient(270deg, var(--white), var(--white-03));
 	--button-operations-hover-gradient: linear-gradient(127deg, var(--purple-01), var(--purple-02));
-	--button-equal-hover-gradient: linear-gradient(127deg, var(--pink-02), var(--pink-01));
+	--button-equal-hover-gradient: linear-gradient(127deg, var(--pink-02), var(--pink-03));
 }
