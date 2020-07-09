@@ -54,6 +54,10 @@ const clearAll = () => {
 
 
 export const getNumber = (number) => {
+  if (isNaN(number) && GET_.getCurrValue().includes(',')) return
+  if (score.textContent === '0' && number === ',') return SET_.setCurrValue(`${score.textContent}${number}`)
+  if (GET_.getCurrValue() === '0' && number === '0') return SET_.setCurrValue(`${number}`)
+
   SET_.setCurrValue(`${GET_.getCurrValue()}${number}`)
 
   console.log('Number', 'Curr val: ', GET_.getCurrValue());
