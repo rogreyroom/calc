@@ -58,6 +58,10 @@ export const getNumber = (number) => {
   if (isNaN(number) && GET_.getCurrValue().includes(',')) return
   if (score.textContent === '0' && number === ',') return SET_.setCurrValue(`${score.textContent}${number}`)
   if (GET_.getCurrValue() === '0' && number === '0') return SET_.setCurrValue(`${number}`)
+  if (GET_.getPercentOperation()) {
+    SET_.setCurrValue('')
+    SET_.setPercentOperation(false)
+  }
 
   SET_.setCurrValue(`${GET_.getCurrValue()}${number}`)
 
@@ -71,7 +75,11 @@ export const getOperation = (operation) => {
       SET_.setEqualOperation(true)
       return computeValue()
     }
-
+    if (operation === '%' )  {
+      SET_.setPercentOperation(true)
+      SET_.setCurrOperation(operation)
+      return computeValue()
+    }
     if (GET_.getCurrValue() === '' ) return
     if (GET_.getPrevValue() !== '' ) computeValue()
 

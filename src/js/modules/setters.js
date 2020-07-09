@@ -17,3 +17,7 @@ export const setCurrOperation = (val) => {
 export const setEqualOperation = (val) => {
   return (vars.equalOperation = val)
 }
+
+export const setPercentOperation = (val) => {
+  return (vars.percentOperation = val)
+}

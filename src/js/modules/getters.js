@@ -17,3 +17,7 @@ export const getCurrOperation = () => {
 export const getEqualOperation = () => {
   return vars.equalOperation
 }
+
+export const getPercentOperation = () => {
+  return vars.percentOperation
+}
