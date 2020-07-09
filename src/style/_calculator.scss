@@ -7,15 +7,17 @@
 	display: grid;
 	grid-template-areas: 'display' 'keys';
 	grid-template-rows: min-content auto;
+	grid-template-columns: min-content;
 	border-radius: 8px;
 	overflow: hidden;
-	max-width: minmax(100vw, 320px);
 
 	&__display {
 		grid-area: display;
 		background-color: var(--black);
 		text-align: right;
 		padding: 24px 16px;
+		overflow-wrap: break-word;
+		word-break: break-all;
 	}
 
 	&__score-operations {
