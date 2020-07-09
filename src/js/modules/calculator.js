@@ -3,13 +3,14 @@ import {score, scoreOperations} from './selectors'
 import * as GET_ from './getters'
 import * as SET_ from './setters'
 
-// Helpers
+// Change value toLocaleString
 const parseToLocale = (val) => {
   // Parses number according to language-sensitive representation
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString
   return val.toLocaleString('pl-PL')
 }
 
+// Perform computation
 const computeValue = () => {
   let computedValue
   const prevValue = GET_.getPrevValue().toString().includes(',')
@@ -20,7 +21,9 @@ const computeValue = () => {
                     ? parseFloat(GET_.getCurrValue().toString().replace(',','.'))
                     : parseFloat(GET_.getCurrValue())
 
-  if (isNaN(currValue) || isNaN(prevValue) && GET_.getCurrOperation() !== '%') return
+  if (GET_.getCurrOperation() !== '%') {
+    if (isNaN(currValue) || isNaN(prevValue) ) return
+  }
 
   switch (GET_.getCurrOperation()) {
     case '+':
@@ -47,11 +50,12 @@ const computeValue = () => {
 }
 
 
-// Operations
+// Toggle current value between negative and positive value
 const toggleNegativeValue = () => {
-  SET_.setCurrValue(parseFloat(GET_.getCurrValue()) * -1)
+  SET_.setCurrValue(parseFloat(GET_.getCurrValue().toString().replace(',','.')) * -1)
 }
 
+// Clear all values
 const clearAll = () => {
   SET_.setPrevValue('')
   SET_.setCurrValue('')
@@ -61,6 +65,7 @@ const clearAll = () => {
   scoreOperations.textContent = ''
 }
 
+// Get button number value
 export const getNumber = (number) => {
   if (isNaN(number) && GET_.getCurrValue().includes(',')) return
   if (score.textContent === '0' && number === ',') return SET_.setCurrValue(`${score.textContent}${number}`)
@@ -71,10 +76,9 @@ export const getNumber = (number) => {
   }
 
   SET_.setCurrValue(`${GET_.getCurrValue()}${number}`)
-
-  console.log('Number', 'Curr val: ', GET_.getCurrValue());
 }
 
+// Get button operation value
 export const getOperation = (operation) => {
     if (operation === 'C') return clearAll()
     if (operation === '+/-') return toggleNegativeValue()
@@ -85,6 +89,7 @@ export const getOperation = (operation) => {
     if (operation === '%' )  {
       SET_.setPercentOperation(true)
       SET_.setCurrOperation(operation)
+      if (GET_.getCurrValue() === '' && scoreOperations.textContent !== '') SET_.setCurrValue(scoreOperations.textContent)
       return computeValue()
     }
     if (GET_.getCurrValue() === '' && GET_.getPrevValue() === '' && scoreOperations.textContent !== '') scoreOperations.textContent = ''
@@ -94,22 +99,21 @@ export const getOperation = (operation) => {
     SET_.setCurrOperation(operation)
     SET_.setPrevValue(GET_.getCurrValue())
     SET_.setCurrValue('')
-
-    console.log('Operation', 'Curr operation: ', GET_.getCurrOperation(), 'Curr val: ', GET_.getCurrValue(), 'Prev val: ', GET_.getPrevValue());
 }
+
 
 // Display values
 export const updateDisplay = () => {
-  console.log('Display');
-
   if (GET_.getCurrValue() === '') {
     score.textContent = '0'
+
   } else {
     if (GET_.getEqualOperation()) {
       scoreOperations.textContent = parseToLocale(GET_.getCurrValue())
       score.textContent = parseToLocale(GET_.getCurrValue())
       SET_.setCurrValue('')
       SET_.setEqualOperation(false)
+
     } else {
       score.textContent = parseToLocale(GET_.getCurrValue())
     }
@@ -120,4 +124,5 @@ export const updateDisplay = () => {
   } else {
     SET_.setPrevValue('')
   }
+
 }
