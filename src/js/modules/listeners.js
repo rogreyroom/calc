@@ -1,6 +1,7 @@
 // All project event listners
 
 import { operations, numbers } from './selectors'
+import { getNumber, getOperation, updateDisplay } from './calculator'
 
 operations.forEach(
     operation => operation.addEventListener('click',
