@@ -14,10 +14,18 @@ const clearAll = () => {
 
 
 export const getNumber = (number) => {
+  SET_.setCurrValue(`${GET_.getCurrValue()}${number}`)
+
   console.log('Number', 'Curr val: ', GET_.getCurrValue());
 }
 
 export const getOperation = (operation) => {
+    if (operation === 'C') return clearAll()
+
+    SET_.setCurrOperation(operation)
+    SET_.setPrevValue(GET_.getCurrValue())
+    SET_.setCurrValue('')
+
     console.log('Operation', 'Curr operation: ', GET_.getCurrOperation());
 }
 
