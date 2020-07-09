@@ -86,7 +86,7 @@ export const getOperation = (operation) => {
       SET_.setCurrOperation(operation)
       return computeValue()
     }
-    
+    if (GET_.getCurrValue() === '' && GET_.getPrevValue() === '' && scoreOperations.textContent !== '') scoreOperations.textContent = ''
     if (GET_.getCurrValue() === '' ) return
     if (GET_.getPrevValue() !== '' ) computeValue()
 
