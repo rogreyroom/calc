@@ -21,9 +21,15 @@
 	}
 
 	&__score-operations {
+		--fs-operations: --body-small;
 		font-weight: var(--fw-normal);
-		font-size: var(--body-small);
+		font-size: var(--fs-operations);
 		color: var(--pink-01);
+		height: 1.5rem;
+
+		@media (min-width: 768px) {
+			--fs-operations: --body-normal;
+		}
 	}
 
 	&__score {
