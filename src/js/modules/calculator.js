@@ -1,11 +1,17 @@
 // Project main module
-
+import {score, scoreOperations} from './selectors'
 import * as GET_ from './getters'
 import * as SET_ from './setters'
 
 // Operations
+const clearAll = () => {
+  SET_.setPrevValue('')
+  SET_.setCurrValue('')
+  SET_.setCurrOperation(null)
+  score.textContent = '0'
+  scoreOperations.textContent = ''
+}
 
-import { getCurrValue } from "./getters";
 
 export const getNumber = (number) => {
   console.log('Number', 'Curr val: ', GET_.getCurrValue());
