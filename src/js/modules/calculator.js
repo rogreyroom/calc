@@ -48,6 +48,7 @@ const clearAll = () => {
   SET_.setPrevValue('')
   SET_.setCurrValue('')
   SET_.setCurrOperation(null)
+  SET_.setEqualOperation(false)
   score.textContent = '0'
   scoreOperations.textContent = ''
 }
@@ -66,6 +67,12 @@ export const getNumber = (number) => {
 export const getOperation = (operation) => {
     if (operation === 'C') return clearAll()
     if (operation === '+/-') return toggleNegativeValue()
+    if (operation === '=' )  {
+      SET_.setEqualOperation(true)
+      return computeValue()
+    }
+
+    if (GET_.getCurrValue() === '' ) return
     if (GET_.getPrevValue() !== '' ) computeValue()
 
     SET_.setCurrOperation(operation)
@@ -78,5 +85,20 @@ export const getOperation = (operation) => {
 // Display values
 export const updateDisplay = () => {
   console.log('Display');
-  score.textContent = GET_.getCurrValue()
+
+  if (GET_.getCurrValue() === '') {
+    score.textContent = '0'
+  } else {
+    if (GET_.getEqualOperation()) {
+      scoreOperations.textContent = GET_.getCurrValue()
+      score.textContent = GET_.getCurrValue()
+      SET_.setEqualOperation(false)
+    } else {
+      score.textContent = GET_.getCurrValue()
+    }
+  }
+
+  GET_.getCurrOperation() != null
+    ? scoreOperations.textContent = `${GET_.getPrevValue()} ${GET_.getCurrOperation()}`
+    : SET_.setPrevValue('')
 }

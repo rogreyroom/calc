@@ -13,3 +13,7 @@ export const getPrevValue = () => {
 export const getCurrOperation = () => {
   return (vars.currOperation)
 }
+
+export const getEqualOperation = () => {
+  return vars.equalOperation
+}

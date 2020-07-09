@@ -13,3 +13,7 @@ export const setPrevValue = (val) => {
 export const setCurrOperation = (val) => {
   return (vars.currOperation = val)
 }
+
+export const setEqualOperation = (val) => {
+  return (vars.equalOperation = val)
+}
