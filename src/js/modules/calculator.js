@@ -4,6 +4,10 @@ import * as GET_ from './getters'
 import * as SET_ from './setters'
 
 // Operations
+const toggleNegativeValue = () => {
+  SET_.setCurrValue(parseFloat(GET_.getCurrValue()) * -1)
+}
+
 const clearAll = () => {
   SET_.setPrevValue('')
   SET_.setCurrValue('')
@@ -21,6 +25,7 @@ export const getNumber = (number) => {
 
 export const getOperation = (operation) => {
     if (operation === 'C') return clearAll()
+    if (operation === '+/-') return toggleNegativeValue()
 
     SET_.setCurrOperation(operation)
     SET_.setPrevValue(GET_.getCurrValue())
@@ -32,4 +37,5 @@ export const getOperation = (operation) => {
 // Display values
 export const updateDisplay = () => {
   console.log('Display');
+  score.textContent = GET_.getCurrValue()
 }
