@@ -20,6 +20,8 @@ const computeValue = () => {
                     ? parseFloat(GET_.getCurrValue().toString().replace(',','.'))
                     : parseFloat(GET_.getCurrValue())
 
+  if (isNaN(currValue) || isNaN(prevValue) && GET_.getCurrOperation() !== '%') return
+
   switch (GET_.getCurrOperation()) {
     case '+':
       computedValue = prevValue + currValue
@@ -58,7 +60,6 @@ const clearAll = () => {
   score.textContent = '0'
   scoreOperations.textContent = ''
 }
-
 
 export const getNumber = (number) => {
   if (isNaN(number) && GET_.getCurrValue().includes(',')) return
@@ -105,7 +106,6 @@ export const updateDisplay = () => {
     score.textContent = '0'
   } else {
     if (GET_.getEqualOperation()) {
-
       scoreOperations.textContent = parseToLocale(GET_.getCurrValue())
       score.textContent = parseToLocale(GET_.getCurrValue())
       SET_.setCurrValue('')
@@ -115,7 +115,9 @@ export const updateDisplay = () => {
     }
   }
 
-  GET_.getCurrOperation() != null
-    ? scoreOperations.textContent = `${parseToLocale(GET_.getPrevValue())} ${GET_.getCurrOperation()}`
-    : SET_.setPrevValue('')
+  if (GET_.getCurrOperation() != null) {
+    if (GET_.getPrevValue() !== '') scoreOperations.textContent = `${parseToLocale(GET_.getPrevValue())} ${GET_.getCurrOperation()}`
+  } else {
+    SET_.setPrevValue('')
+  }
 }
