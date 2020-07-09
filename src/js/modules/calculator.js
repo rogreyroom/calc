@@ -4,6 +4,12 @@ import * as GET_ from './getters'
 import * as SET_ from './setters'
 
 // Helpers
+const parseToLocale = (val) => {
+  // Parses number according to language-sensitive representation
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString
+  return val.toLocaleString('pl-PL')
+}
+
 const computeValue = () => {
   let computedValue
   const prevValue = GET_.getPrevValue().toString().includes(',')
@@ -80,6 +86,7 @@ export const getOperation = (operation) => {
       SET_.setCurrOperation(operation)
       return computeValue()
     }
+    
     if (GET_.getCurrValue() === '' ) return
     if (GET_.getPrevValue() !== '' ) computeValue()
 
@@ -98,15 +105,17 @@ export const updateDisplay = () => {
     score.textContent = '0'
   } else {
     if (GET_.getEqualOperation()) {
-      scoreOperations.textContent = GET_.getCurrValue()
-      score.textContent = GET_.getCurrValue()
+
+      scoreOperations.textContent = parseToLocale(GET_.getCurrValue())
+      score.textContent = parseToLocale(GET_.getCurrValue())
+      SET_.setCurrValue('')
       SET_.setEqualOperation(false)
     } else {
-      score.textContent = GET_.getCurrValue()
+      score.textContent = parseToLocale(GET_.getCurrValue())
     }
   }
 
   GET_.getCurrOperation() != null
-    ? scoreOperations.textContent = `${GET_.getPrevValue()} ${GET_.getCurrOperation()}`
+    ? scoreOperations.textContent = `${parseToLocale(GET_.getPrevValue())} ${GET_.getCurrOperation()}`
     : SET_.setPrevValue('')
 }
