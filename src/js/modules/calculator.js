@@ -52,6 +52,7 @@ const computeValue = () => {
 
 // Toggle current value between negative and positive value
 const toggleNegativeValue = () => {
+  if (isNaN(parseFloat(GET_.getCurrValue()))) return
   SET_.setCurrValue(parseFloat(GET_.getCurrValue().toString().replace(',','.')) * -1)
 }
 
