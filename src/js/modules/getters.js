@@ -11,7 +11,7 @@ export const getPrevValue = () => {
 }
 
 export const getCurrOperation = () => {
-  return (vars.currOperation)
+  return vars.currOperation
 }
 
 export const getEqualOperation = () => {
