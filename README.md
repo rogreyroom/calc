@@ -24,7 +24,7 @@ More details in the 'how to use' section below.
 If you want to build it
 
 - run `yarn build` or `npm run build`
-- add the content of the dist folder to your server public folder.
+- add the content of the docs folder to your server public folder.
 - go to your domain Http address
 
 ## Version

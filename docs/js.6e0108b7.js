@@ -15,4 +15,4 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{"./selectors":"wykA","./calculator":"VGID"}],"QvaY":[function(require,module,exports) {
 "use strict";require("normalize.css"),require("./modules/listeners");
 },{"normalize.css":"DOAq","./modules/listeners":"rByZ"}]},{},["QvaY"], null)
-//# sourceMappingURL=/js.6e0108b7.js.map
+//# sourceMappingURL=js.6e0108b7.js.map
