@@ -1,0 +1,108 @@
+.main {
+	height: 100%;
+	min-height: 100%;
+}
+
+.calculator {
+	display: grid;
+	grid-template-areas: 'display' 'keys';
+	grid-template-rows: min-content auto;
+	grid-template-columns: min-content;
+	border-radius: 8px;
+	overflow: hidden;
+
+	&__display {
+		grid-area: display;
+		background-color: var(--black);
+		text-align: right;
+		padding: 24px 16px;
+		overflow-wrap: break-word;
+		word-break: break-all;
+	}
+
+	&__score-operations {
+		--fs-operations: --body-small;
+		font-weight: var(--fw-normal);
+		font-size: var(--fs-operations);
+		color: var(--pink-01);
+		height: 1.5rem;
+
+		@media (min-width: 768px) {
+			--fs-operations: --body-normal;
+		}
+	}
+
+	&__score {
+		font-weight: var(--fw-light);
+		font-size: var(--heading-02);
+		color: var(--white);
+		margin: 0;
+	}
+
+	&__buttons {
+		--square: 20vw;
+		grid-area: keys;
+		margin-top: 0;
+		display: grid;
+		grid-template-columns: repeat(4, var(--square));
+		grid-template-rows: repeat(5, var(--square));
+
+		@media (min-width: 568px) {
+			--square: 92px;
+		}
+	}
+
+	&__button {
+		font-weight: inherit;
+		line-height: inherit;
+		font-size: inherit;
+		text-decoration: none;
+		padding: 0;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background-color: transparent;
+		border: none;
+		background-image: var(--button-numbers-gradient);
+		transition: all 1s ease;
+
+		&:hover {
+			// background-image: var(--button-numbers-hover-gradient);
+			background-image: none;
+			background-color: var(--white);
+		}
+
+		&:focus {
+			outline: var(--pink-01);
+			box-shadow: 2px var(--pink-01);
+		}
+
+		&--function {
+			background-image: var(--button-functions-gradient);
+		}
+
+		&--operation {
+			background-image: none;
+			background-color: var(--purple-01);
+			color: var(--white);
+			font-size: var(--body-big);
+
+			&:hover {
+				background-image: var(--button-operations-hover-gradient);
+			}
+		}
+
+		&--equal {
+			grid-column: span 2;
+			background-image: none;
+			background-color: var(--pink-02);
+			color: var(--white);
+			font-size: var(--body-big);
+
+			&:hover {
+				background-image: var(--button-equal-hover-gradient);
+			}
+		}
+	}
+}
